@@ -1,5 +1,5 @@
 name: Connect-Health
-version: 1.0-SNAPSHOT
+version: 1.0.1
 main: pl.jacobtm.connecthealth.ConnectHealthPlugin
 description: 'Allows to connect two players health'
 author: 'Jacob.Tm'
