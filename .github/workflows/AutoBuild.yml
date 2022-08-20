@@ -5,8 +5,10 @@ name: Latest build
 
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
+    paths-ignore:
+      - 'README.md'
+      - '.github'
+      - '.gitignore'
     branches: [ "master" ]
 
 jobs:
@@ -20,8 +22,9 @@ jobs:
       with:
         java-version: '11'
         distribution: 'adopt'
+        cache: maven
     - run: mvn clean package
-    - run: mkdir staging && cp target/*.jar staging
+    - run: mkdir staging && cp target/Connect-Health-*.jar staging
     - uses: actions/upload-artifact@v3
       with:
         name: Package
