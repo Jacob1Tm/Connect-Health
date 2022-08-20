@@ -1,0 +1,14 @@
+command-any-error: "Błąd!"
+
+command-time-success: "Ustawiono czas na {time}!"
+
+command-fly-success: "Latanie zostało ustawione na {fly}!"
+
+command-enchant-error: "Brak przedmiotu w ręku!"
+command-enchant-success: "Przedmiot został enchantowany na {enchant} {level}!"
+
+command-connect-players-success: "Zdrowie graczy zostało połączone!"
+command-connect-players-enabled-true: "Zdrowie graczy jest teraz połączone"
+command-connect-players-enabled-false: "Zdrowie graczy już nie jest połączone!"
+command-connect-players-title: "Twoje zdrowie jest teraz połączone z {player}!"
+command-connect-players-error: "Nie możesz połączyć jednej osoby!"
