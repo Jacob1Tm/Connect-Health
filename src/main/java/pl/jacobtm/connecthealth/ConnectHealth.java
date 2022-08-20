@@ -16,15 +16,15 @@ public class ConnectHealth implements Listener {
     private static Player p2 = null;
     private static boolean Enabled = false;
 
-    public static void getPlayer1(Player player1) {
+    public static void setPlayer1(Player player1) {
         p1 = player1;
     }
 
-    public static void getPlayer2(Player player2) {
+    public static void setPlayer2(Player player2) {
         p2 = player2;
     }
 
-    public static void getEnabled(boolean enabled) {
+    public static void setEnabled(boolean enabled) {
         Enabled = enabled;
     }
 
