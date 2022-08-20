@@ -12,3 +12,5 @@ Maven
 To build plugin just run this command in main directory\
 ``mvn clean package``\
 and you should have jar file in `target` folder
+
+# More info can be found in [wiki](https://github.com/Jacob1Tm/Connect-Health/wiki)
