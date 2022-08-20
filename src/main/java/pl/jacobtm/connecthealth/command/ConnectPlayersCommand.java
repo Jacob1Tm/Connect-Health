@@ -50,10 +50,10 @@ public class ConnectPlayersCommand implements CommandService {
     @Executor (description = "enables or disables health connection")
     public Message enabled(@Arg Boolean enabled, @Sender Player player) {
         if(enabled) {
-            ConnectHealth.setEnabled(enabled = true);
+            ConnectHealth.setEnabled(true);
                 return this.i18n.get(player, this.messages.getCommandConnectPlayersEnabledTrue());
         } else {
-        ConnectHealth.setEnabled(enabled = false);
+        ConnectHealth.setEnabled(false);
         return this.i18n.get(player, this.messages.getCommandConnectPlayersEnabledFalse());
     }
     }
