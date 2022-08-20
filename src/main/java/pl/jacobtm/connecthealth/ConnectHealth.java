@@ -24,7 +24,7 @@ public class ConnectHealth implements Listener {
         p2 = player2;
     }
 
-    public static void getenabled(boolean enabled) {
+    public static void getEnabled(boolean enabled) {
         Enabled = enabled;
     }
 

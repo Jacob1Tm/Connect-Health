@@ -33,7 +33,7 @@ public class ConnectPlayersCommand implements CommandService {
         }
         ConnectHealth.getPlayer1(player1);
         ConnectHealth.getPlayer2(player2);
-        ConnectHealth.getenabled(true);
+        ConnectHealth.getEnabled(true);
         player1.setHealth(20);
         player2.setHealth(20);
         Message message1 = this.i18n.get(player1, this.messages.getCommandConnectPlayersTitle()).with("player", player2.getName());
@@ -50,10 +50,10 @@ public class ConnectPlayersCommand implements CommandService {
     @Executor (description = "enables or disables health connection")
     public Message enabled(@Arg Boolean enabled, @Sender Player player) {
         if(enabled) {
-            ConnectHealth.getenabled(enabled = true);
+            ConnectHealth.getEnabled(enabled = true);
                 return this.i18n.get(player, this.messages.getCommandConnectPlayersEnabledTrue());
         } else {
-        ConnectHealth.getenabled(enabled = false);
+        ConnectHealth.getEnabled(enabled = false);
         return this.i18n.get(player, this.messages.getCommandConnectPlayersEnabledFalse());
     }
     }
