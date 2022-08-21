@@ -2,6 +2,10 @@
 
 Plugin that allows to connect two players health
 
+# Download
+To download latest stable release go to [Realeses](https://github.com/Jacob1Tm/Connect-Health/releases) and download newest jar file\
+Or if you wonna try unstable release go to [Actions](https://github.com/Jacob1Tm/Connect-Health/actions) click on newest release and download package from artifacts\
+
 # Building
 
 ### Requirements
@@ -12,3 +16,5 @@ Maven
 To build plugin just run this command in main directory\
 ``mvn clean package``\
 and you should have jar file in `target` folder
+
+# More info can be found in [wiki](https://github.com/Jacob1Tm/Connect-Health/wiki)
