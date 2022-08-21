@@ -18,7 +18,7 @@ import pl.jacobtm.connecthealth.config.LocaleFile;
 
 
 @Async
-@Command(label = "ConnectPlayers", aliases = "cp")
+@Command(label = "connectplayers", aliases = "cp")
 @Permission("connecthealth.command.connectplayers")
 public class ConnectPlayersCommand implements CommandService {
 
@@ -48,7 +48,7 @@ public class ConnectPlayersCommand implements CommandService {
         return this.i18n.get(player, this.messages.getCommandConnectPlayersSuccess());
     }
     @Executor (description = "enables or disables health connection")
-    public Message enabled(@Arg Boolean enabled, @Sender Player player) {
+    public Message enabled(@Sender Player player, @Arg boolean enabled) {
         if(enabled) {
             ConnectHealth.setEnabled(true);
                 return this.i18n.get(player, this.messages.getCommandConnectPlayersEnabledTrue());
