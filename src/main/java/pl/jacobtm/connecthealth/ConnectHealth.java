@@ -152,20 +152,20 @@ public class ConnectHealth implements Listener {
             if (p1 == null || p2 == null || p3 == null) return;
             Player player = (Player) event.getEntity();
             if (player.equals(p1)) {
-                if (p1.isDead() || p2.isDead() || p3.isDead()) return;
+                if (p2.isDead() || p3.isDead()) return;
                 p2.setHealth(0);
                 p1.spigot().respawn();
                 p2.spigot().respawn();
                 p3.spigot().respawn();
             } else if (player.equals(p2)) {
-                if (p1.isDead() || p2.isDead() || p3.isDead()) return;
+                if (p1.isDead() || p3.isDead()) return;
                 p1.setHealth(0);
                 p3.setHealth(0);
                 p1.spigot().respawn();
                 p2.spigot().respawn();
                 p3.spigot().respawn();
             } else if (player.equals(p3)) {
-                if (p1.isDead() || p2.isDead() || p3.isDead()) return;
+                if (p1.isDead() || p2.isDead()) return;
                 p1.setHealth(0);
                 p2.setHealth(0);
                 p1.spigot().respawn();
@@ -247,7 +247,7 @@ public class ConnectHealth implements Listener {
             if (p1 == null || p2 == null || p3 == null || p4 == null) return;
             Player player = (Player) event.getEntity();
             if (player.equals(p1)) {
-                if (p1.isDead() || p2.isDead() || p3.isDead() || p4.isDead()) return;
+                if (p2.isDead() || p3.isDead() || p4.isDead()) return;
                 p2.setHealth(0);
                 p3.setHealth(0);
                 p4.setHealth(0);
@@ -256,7 +256,7 @@ public class ConnectHealth implements Listener {
                 p3.spigot().respawn();
                 p4.spigot().respawn();
             } else if (player.equals(p2)) {
-                if (p1.isDead() || p2.isDead() || p3.isDead() || p4.isDead()) return;
+                if (p1.isDead() || p3.isDead() || p4.isDead()) return;
                 p1.setHealth(0);
                 p3.setHealth(0);
                 p4.setHealth(0);
@@ -265,7 +265,7 @@ public class ConnectHealth implements Listener {
                 p3.spigot().respawn();
                 p4.spigot().respawn();
             } else if (player.equals(p3)) {
-                if (p1.isDead() || p2.isDead() || p3.isDead() || p4.isDead()) return;
+                if (p1.isDead() || p2.isDead() || p4.isDead()) return;
                 p1.setHealth(0);
                 p2.setHealth(0);
                 p4.setHealth(0);
@@ -274,7 +274,7 @@ public class ConnectHealth implements Listener {
                 p3.spigot().respawn();
                 p4.spigot().respawn();
             } else if (player.equals(p4)) {
-                if (p1.isDead() || p2.isDead() || p3.isDead() || p4.isDead()) return;
+                if (p1.isDead() || p2.isDead() || p3.isDead()) return;
                 p1.setHealth(0);
                 p2.setHealth(0);
                 p4.setHealth(0);

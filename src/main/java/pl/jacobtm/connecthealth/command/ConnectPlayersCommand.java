@@ -15,11 +15,30 @@ import org.bukkit.entity.Player;
 import pl.jacobtm.connecthealth.ConnectHealth;
 import pl.jacobtm.connecthealth.config.LocaleFile;
 
+import java.util.HashSet;
+import java.util.Set;
+
 
 @Async
 @Command(label = "connectplayers", aliases = "cp")
 @Permission("connecthealth.command.connectplayers")
 public class ConnectPlayersCommand implements CommandService {
+
+    //when you need to check for players duplicates
+    private static <T> boolean checkForDuplicates(T... array)
+    {
+        Set<T> set = new HashSet<T>();
+        for (T e: array)
+        {
+            if (set.contains(e)) {
+                return true;
+            }
+            if (e != null) {
+                set.add(e);
+            }
+        }
+        return false;
+    }
 
     private @Inject BI18n i18n;
     private @Inject LocaleFile messages;
@@ -29,6 +48,12 @@ public class ConnectPlayersCommand implements CommandService {
 
         ConnectHealth.setPlayer1(player1);
         ConnectHealth.setPlayer2(player2);
+
+        Player[] players = {player1, player2};
+        if (checkForDuplicates(players)) {
+            return this.i18n.get(player, this.messages.getCommandConnectPlayersError());
+        }
+
         ConnectHealth.setGamemode("2players");
 
         Message message1 = this.i18n.get(player1, this.messages.getCommandConnectPlayersTitle()).with("player", player2.getName());
@@ -48,6 +73,10 @@ public class ConnectPlayersCommand implements CommandService {
         ConnectHealth.setPlayer1(player1);
         ConnectHealth.setPlayer2(player2);
         ConnectHealth.setPlayer3(player3);
+        Player[] players = {player1, player2, player3};
+        if (checkForDuplicates(players)) {
+            return this.i18n.get(player, this.messages.getCommandConnectPlayersError());
+        }
         ConnectHealth.setGamemode("3players");
 
         Message message1 = this.i18n.get(player1, this.messages.getCommandConnectPlayersTitle3p())
@@ -79,6 +108,11 @@ public class ConnectPlayersCommand implements CommandService {
         ConnectHealth.setPlayer2(player2);
         ConnectHealth.setPlayer3(player3);
         ConnectHealth.setPlayer4(player4);
+
+        Player[] players = {player1, player2, player3, player4};
+        if (checkForDuplicates(players)) {
+            return this.i18n.get(player, this.messages.getCommandConnectPlayersError());
+        }
         ConnectHealth.setGamemode("4players");
 
         Message message1 = this.i18n.get(player1, this.messages.getCommandConnectPlayersTitle4p())
