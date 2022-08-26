@@ -9,7 +9,7 @@ on:
       - 'README.md'
       - '.github'
       - '.gitignore'
-    branches: [ "master" ]
+    branches: [ "4players-dev" ]
 
 jobs:
   build:
