@@ -6,7 +6,6 @@ import eu.okaeri.commands.annotation.Executor;
 import eu.okaeri.commands.bukkit.annotation.Async;
 import eu.okaeri.commands.bukkit.annotation.Permission;
 import eu.okaeri.commands.bukkit.annotation.Sender;
-import eu.okaeri.commands.bukkit.annotation.Sync;
 import eu.okaeri.commands.service.CommandService;
 import eu.okaeri.i18n.message.Message;
 import eu.okaeri.injector.annotation.Inject;
@@ -25,20 +24,15 @@ public class ConnectPlayersCommand implements CommandService {
     private @Inject BI18n i18n;
     private @Inject LocaleFile messages;
 
-    @Sync
-    @Executor(description = "Connects players health")
-    public Message connect(@Arg Player player1 , @Arg Player player2, @Sender Player player) {
-        if (player1 == player2) {
-            return this.i18n.get(player, messages.getCommandConnectPlayersError());
-        }
+    @Executor (description = "select two players to connect health!")
+    public Message mode_2players(@Arg Player player1, @Arg Player player2, @Sender Player player) {
+
         ConnectHealth.setPlayer1(player1);
         ConnectHealth.setPlayer2(player2);
-        ConnectHealth.setEnabled(true);
-        player1.setHealth(20);
-        player2.setHealth(20);
+        ConnectHealth.setGamemode("2players");
+
         Message message1 = this.i18n.get(player1, this.messages.getCommandConnectPlayersTitle()).with("player", player2.getName());
         Message message2 = this.i18n.get(player2, this.messages.getCommandConnectPlayersTitle()).with("player", player1.getName());
-
         player1.sendMessage(message1.apply());
         player1.playSound(player1.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1, 1);
 
@@ -47,14 +41,82 @@ public class ConnectPlayersCommand implements CommandService {
 
         return this.i18n.get(player, this.messages.getCommandConnectPlayersSuccess());
     }
-    @Executor (description = "enables or disables health connection")
-    public Message enabled(@Sender Player player, @Arg boolean enabled) {
-        if(enabled) {
-            ConnectHealth.setEnabled(true);
-                return this.i18n.get(player, this.messages.getCommandConnectPlayersEnabledTrue());
-        } else {
-        ConnectHealth.setEnabled(false);
-        return this.i18n.get(player, this.messages.getCommandConnectPlayersEnabledFalse());
+
+    @Executor (description = "select three players to connect health!")
+    public Message mode_3players(@Arg Player player1, @Arg Player player2, @Arg Player player3 , @Sender Player player) {
+
+        ConnectHealth.setPlayer1(player1);
+        ConnectHealth.setPlayer2(player2);
+        ConnectHealth.setPlayer3(player3);
+        ConnectHealth.setGamemode("3players");
+
+        Message message1 = this.i18n.get(player1, this.messages.getCommandConnectPlayersTitle3p())
+                .with("player", player2.getName())
+                .with("player2", player3.getName());
+        Message message2 = this.i18n.get(player2, this.messages.getCommandConnectPlayersTitle3p())
+                .with("player", player1.getName())
+                .with("player2", player3.getName());
+        Message message3 = this.i18n.get(player3, this.messages.getCommandConnectPlayersTitle3p())
+                .with("player", player1.getName())
+                .with("player2", player2.getName());
+
+        player1.sendMessage(message1.apply());
+        player1.playSound(player1.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1, 1);
+
+        player2.sendMessage(message2.apply());
+        player2.playSound(player2.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1, 1);
+
+        player3.sendMessage(message3.apply());
+        player3.playSound(player3.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1, 1);
+
+        return this.i18n.get(player, this.messages.getCommandConnectPlayersSuccess());
     }
+
+    @Executor (description = "select four players to connect health!")
+    public Message mode_4players(@Arg Player player1, @Arg Player player2, @Arg Player player3, @Arg Player player4 , @Sender Player player) {
+
+        ConnectHealth.setPlayer1(player1);
+        ConnectHealth.setPlayer2(player2);
+        ConnectHealth.setPlayer3(player3);
+        ConnectHealth.setPlayer4(player4);
+        ConnectHealth.setGamemode("4players");
+
+        Message message1 = this.i18n.get(player1, this.messages.getCommandConnectPlayersTitle4p())
+                .with("player", player2.getName())
+                .with("player2", player3.getName())
+                .with("player3", player4.getName());
+        Message message2 = this.i18n.get(player2, this.messages.getCommandConnectPlayersTitle4p())
+                .with("player", player1.getName())
+                .with("player2", player3.getName())
+                .with("player3", player4.getName());
+        Message message3 = this.i18n.get(player3, this.messages.getCommandConnectPlayersTitle4p())
+                .with("player", player1.getName())
+                .with("player2", player2.getName())
+                .with("player3", player4.getName());
+        Message message4 = this.i18n.get(player4, this.messages.getCommandConnectPlayersTitle4p())
+                .with("player", player1.getName())
+                .with("player2", player2.getName())
+                .with("player3", player3.getName());
+
+        player1.sendMessage(message1.apply());
+        player1.playSound(player1.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1, 1);
+
+        player2.sendMessage(message2.apply());
+        player2.playSound(player2.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1, 1);
+
+        player3.sendMessage(message3.apply());
+        player3.playSound(player3.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1, 1);
+
+        player4.sendMessage(message4.apply());
+        player4.playSound(player4.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1, 1);
+
+        return this.i18n.get(player, this.messages.getCommandConnectPlayersSuccess());
+    }
+
+    @Executor(description = "disables health connection")
+    public Message disable(@Sender Player player, @Arg boolean enabled) {
+
+        ConnectHealth.setGamemode("disabled");
+        return this.i18n.get(player, this.messages.getCommandConnectPlayersEnabledFalse());
     }
 }
