@@ -147,6 +147,43 @@ public class ConnectPlayersCommand implements CommandService {
         return this.i18n.get(player, this.messages.getCommandConnectPlayersSuccess());
     }
 
+    public Message mode_2teams(@Sender Sender sender, @Arg Player player1,@Arg Player player2,@Arg Player player3,@Arg Player player4) {
+        ConnectHealth.setPlayer1(player1);
+        ConnectHealth.setPlayer2(player2);
+        ConnectHealth.setPlayer3(player3);
+        ConnectHealth.setPlayer4(player4);
+
+        Player[] players = {player1, player2, player3, player4};
+        if (checkForDuplicates(players)) {
+            return this.i18n.get(sender, this.messages.getCommandConnectPlayersError());
+        }
+        ConnectHealth.setGamemode("2teams");
+
+        Message message1 = this.i18n.get(player1, this.messages.getCommandConnectPlayersTitle2t())
+                .with("player", player2.getName());
+        Message message2 = this.i18n.get(player2, this.messages.getCommandConnectPlayersTitle2t())
+                .with("player", player1.getName());
+        Message message3 = this.i18n.get(player3, this.messages.getCommandConnectPlayersTitle2t())
+                .with("player", player4.getName());
+        Message message4 = this.i18n.get(player4, this.messages.getCommandConnectPlayersTitle2t())
+                .with("player", player3.getName());
+
+
+        player1.sendMessage(message1.apply());
+        player1.playSound(player1.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1, 1);
+
+        player2.sendMessage(message2.apply());
+        player2.playSound(player2.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1, 1);
+
+        player3.sendMessage(message3.apply());
+        player3.playSound(player3.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1, 1);
+
+        player4.sendMessage(message4.apply());
+        player4.playSound(player4.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1, 1);
+
+        return this.i18n.get(sender, this.messages.getCommandConnectPlayersSuccess());
+    }
+
     @Executor(description = "disables health connection")
     public Message disable(@Sender Player player, @Arg boolean enabled) {
 

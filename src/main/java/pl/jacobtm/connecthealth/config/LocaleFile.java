@@ -18,4 +18,5 @@ public class LocaleFile extends LocaleConfig {
     private String commandConnectPlayersTitle3p = "Your health is now connected with {player} and {player2}!";
     private String commandConnectPlayersTitle4p = "Your health is now connected with {player}, {player2} and {player3}!";
     private String commandConnectPlayersError = "Player duplicate found!";
+    private String commandConnectPlayersTitle2t = "Your health is now connected with {player}!";
 }

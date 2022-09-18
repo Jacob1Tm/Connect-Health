@@ -118,7 +118,7 @@ public class ConnectHealth implements Listener {
                 double p3h = Math.abs(p3.getHealth() + event.getAmount());
                 if (p3h > 20) p3h = 20;
                 p1.setHealth(p3h);
-                p3.setHealth(p3h);
+                p2.setHealth(p3h);
             }
         }
     }
@@ -199,7 +199,7 @@ public class ConnectHealth implements Listener {
                 double p3h = Math.abs(p3.getHealth() + event.getAmount());
                 if (p3h > 20) p3h = 20;
                 p1.setHealth(p3h);
-                p3.setHealth(p3h);
+                p2.setHealth(p3h);
                 p4.setHealth(p3h);
             } else if (player.equals(4)) {
                 double p4h = Math.abs(p4.getHealth() + event.getAmount());
@@ -280,6 +280,84 @@ public class ConnectHealth implements Listener {
                 p4.setHealth(0);
                 p1.spigot().respawn();
                 p2.spigot().respawn();
+                p3.spigot().respawn();
+                p4.spigot().respawn();
+            }
+        }
+    }
+    //2 teams mode
+    @Async
+    @EventHandler
+    public void onRegainHealth2t (EntityRegainHealthEvent event){
+        if (mode != "2teams") return;
+        if (event.getEntity() instanceof Player) {
+            if (p1 == null || p2 == null || p3 == null || p4 == null) return;
+            Player player = (Player) event.getEntity();
+            if (player.equals(p1)) {
+                double p1h = Math.abs(p1.getHealth() + event.getAmount());
+                if (p1h > 20) p1h = 20;
+                p2.setHealth(p1h);
+            } else if (player.equals(p2)) {
+                double p2h = Math.abs(p2.getHealth() + event.getAmount());
+                if (p2h > 20) p2h = 20;
+                p1.setHealth(p2h);
+            } else if (player.equals(p3)) {
+                double p3h = Math.abs(p3.getHealth() + event.getAmount());
+                if (p3h > 20) p3h = 20;
+                p4.setHealth(p3h);
+            } else if (player.equals(4)) {
+                double p4h = Math.abs(p4.getHealth() + event.getAmount());
+                p3.setHealth(p4h);
+            }
+        }
+    }
+    @Async
+    @EventHandler
+    public void onDamage2t (EntityDamageEvent event){
+        if (mode != "2teams") return;
+        if (event.getEntity() instanceof Player) {
+            if (p1 == null || p2 == null || p3 == null || p4 == null) return;
+            Player player = (Player) event.getEntity();
+            if (player.equals(p1)) {
+                double p1h = Math.abs(p1.getHealth() - event.getFinalDamage());
+                p2.setHealth(p1h);
+            } else if (player.equals(p2)) {
+                double p2h = Math.abs(p2.getHealth() - event.getFinalDamage());
+                p1.setHealth(p2h);
+            } else if (player.equals(p3)) {
+                double p3h = Math.abs(p3.getHealth() - event.getFinalDamage());
+                p4.setHealth(p3h);
+            } else if (player.equals(p4)) {
+                double p4h = Math.abs(p4.getHealth() - event.getFinalDamage());
+                p3.setHealth(p4h);
+            }
+        }
+    }
+    @Async
+    @EventHandler
+    public void onDeath2t (EntityDeathEvent event) {
+        if (mode != "2teams") return;
+        if (event.getEntity() instanceof Player) {
+            if (p1 == null || p2 == null || p3 == null || p4 == null) return;
+            Player player = (Player) event.getEntity();
+            if (player.equals(p1)) {
+                if (p2.isDead()) return;
+                p2.setHealth(0);
+                p1.spigot().respawn();
+                p2.spigot().respawn();
+            } else if (player.equals(p2)) {
+                if (p1.isDead()) return;
+                p1.setHealth(0);
+                p1.spigot().respawn();
+                p2.spigot().respawn();
+            } else if (player.equals(p3)) {
+                if (p4.isDead()) return;
+                p4.setHealth(0);
+                p3.spigot().respawn();
+                p4.spigot().respawn();
+            } else if (player.equals(p4)) {
+                if (p3.isDead()) return;
+                p4.setHealth(0);
                 p3.spigot().respawn();
                 p4.spigot().respawn();
             }
